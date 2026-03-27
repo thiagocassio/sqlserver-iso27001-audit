@@ -52,35 +52,17 @@ sqlserver-iso27001-audit
 
 ## Como utilizar
 
-## 1. Criar tabela de auditoria
+1. Execute os scripts disponíveis em `02-Auditoria-SQL` para criação das procedures de auditoria
 
-```sql
-CREATE TABLE Auditoria_ISO27001
-(
-    ID INT IDENTITY(1,1),
-    Categoria VARCHAR(100),
-    Item VARCHAR(255),
-    Status VARCHAR(10),
-    Evidencia VARCHAR(MAX),
-    DataAuditoria DATETIME DEFAULT GETDATE()
-);
-```
---- 
+2. Utilize a procedure principal para execução das verificações
 
-## 2. Executar as procedures
-```sql
-EXEC sp_Auditoria_Geral;
-```
---- 
+3. Consulte os resultados na tabela de auditoria
 
-## 3. Visualizar resultados
-```sql
-SELECT * FROM Auditoria_ISO27001;
-```
+4. (Opcional) Conecte a base ao Grafana ou Power BI para visualização dos indicadores
 
 ---
 
-## 4. Dashboard
+## Dashboard
 
 Os dados podem ser consumidos por ferramentas como:
 

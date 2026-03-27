@@ -98,17 +98,22 @@ Resultado
 O projeto gera:
 
 Base estruturada de auditoria
+
 Evidência técnica para validação de controles
+
 Indicadores de conformidade
+
 Identificação de riscos no ambiente SQL Server
+
 Tecnologias utilizadas
+
 SQL Server
+
 T-SQL
+
 Grafana
+
 Observações
 
 Este projeto tem caráter educacional e demonstra uma abordagem prática de auditoria baseada na ISO 27001 aplicada a banco de dados.
 
-Autor
-
-Thiago Cassio

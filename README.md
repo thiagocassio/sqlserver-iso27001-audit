@@ -33,18 +33,32 @@ Demonstrar como aplicar conceitos de segurança da informação em ambientes SQL
 sqlserver-iso27001-audit
 
 │
+
+
 ├── 01-Checklist
+
 │ └── checklist_iso27001_sqlserver.md
+
 │
+
 ├── 02-Auditoria-SQL
+
 │ ├── queries_auditoria.sql
+
 │ └── procedures_auditoria.sql
+
 │
+
 ├── 03-Dashboard
+
 │ └── grafana_dashboard.json (opcional)
+
 │
+
 ├── 04-Documentacao
+
 │ └── como_funciona.md
+
 │
 └── README.md
 

@@ -52,13 +52,13 @@ sqlserver-iso27001-audit
 
 ## Como utilizar
 
-1. Execute os scripts disponíveis em `02-Auditoria-SQL` para criação das procedures de auditoria
+1. Executar os scripts disponíveis em `02-Auditoria-SQL` para criação das procedures de auditoria
 
-2. Utilize a procedure principal para execução das verificações
+2. Utilizar a procedure principal para execução das verificações
 
-3. Consulte os resultados na tabela de auditoria
+3. Consultar os resultados na tabela de auditoria
 
-4. (Opcional) Conecte a base ao Grafana ou Power BI para visualização dos indicadores
+4. Conectar a base ao Grafana ou Power BI para visualização dos indicadores
 
 ---
 

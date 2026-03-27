@@ -52,7 +52,7 @@ sqlserver-iso27001-audit
 
 ## Como utilizar
 
-### 1. Criar tabela de auditoria
+## 1. Criar tabela de auditoria
 
 ```sql
 CREATE TABLE Auditoria_ISO27001

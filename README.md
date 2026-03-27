@@ -30,8 +30,8 @@ Demonstrar como aplicar conceitos de segurança da informação em ambientes SQL
 
 ## Estrutura do projeto
 
-
 sqlserver-iso27001-audit
+
 │
 ├── 01-Checklist
 │ └── checklist_iso27001_sqlserver.md
@@ -65,11 +65,23 @@ CREATE TABLE Auditoria_ISO27001
     Evidencia VARCHAR(MAX),
     DataAuditoria DATETIME DEFAULT GETDATE()
 );
-2. Executar as procedures
+```
+--- 
+
+## 2. Executar as procedures
+```sql
 EXEC sp_Auditoria_Geral;
+```
+--- 
+
 3. Visualizar resultados
+```sql
 SELECT * FROM Auditoria_ISO27001;
-4. Dashboard
+```
+
+---
+
+## 5. Dashboard
 
 Os dados podem ser consumidos por ferramentas como:
 

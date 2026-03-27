@@ -34,7 +34,7 @@ WHERE name = 'sa';
 
 ---
 
-2. Autenticação e Identidade
+## 2. Autenticação e Identidade
 
 - Políticas de senha estão habilitadas?
 
@@ -55,7 +55,7 @@ EXEC xp_readerrorlog 0, 1, 'Login failed';
 - MFA é utilizado quando possível?
 
 ---
-4. Criptografia e Proteção de Dados
+## 3. Criptografia e Proteção de Dados
 
 - TDE está habilitado nos bancos críticos?
 
@@ -81,7 +81,7 @@ FROM sys.dm_exec_connections;
 
 ---
 
-6. Auditoria e Monitoramento
+## 4. Auditoria e Monitoramento
 
 - SQL Server Audit está ativo?
 
@@ -103,7 +103,7 @@ FROM sys.server_audit_specifications;
 
 ---
 
-8. Gestão de Vulnerabilidades
+## 5. Gestão de Vulnerabilidades
 
 - SQL Server está atualizado?
 
@@ -165,7 +165,7 @@ HAVING MAX(b.backup_finish_date) IS NULL;
 
 ---
 
-8. Gestão de Mudanças
+## 7. Gestão de Mudanças
 
 - Existe controle formal de mudanças?
 - Scripts são versionados (ex: Git)?
@@ -175,7 +175,7 @@ HAVING MAX(b.backup_finish_date) IS NULL;
 
 ---
 
-10. Classificação de Dados
+## 8. Classificação de Dados
 
 - Dados sensíveis estão identificados?
 
@@ -204,7 +204,7 @@ WHERE perm.state_desc = 'GRANT';
 
 ---
 
-12. Segurança de Infraestrutura
+## 9. Segurança de Infraestrutura
 - Servidor SQL está isolado em rede segura?
 - Firewall está configurado corretamente?
 - Acesso remoto é restrito?
@@ -213,7 +213,7 @@ WHERE perm.state_desc = 'GRANT';
 
 ---
 
-14. Logs e Evidência
+## 10. Logs e Evidência
 
 - Logs são armazenados com retenção definida?
 - Logs são protegidos contra alteração?
@@ -223,7 +223,7 @@ WHERE perm.state_desc = 'GRANT';
 
 ---
 
-16. Alta Disponibilidade e DR
+## 11. Alta Disponibilidade e DR
 
 - Existe estratégia de HA (Always On / Log Shipping)?
 - RPO e RTO estão definidos?
@@ -233,7 +233,7 @@ WHERE perm.state_desc = 'GRANT';
 
 ---
 
-18. Processos e Governança
+## 12. Processos e Governança
 
 - Existem runbooks operacionais?
 - Procedimentos estão documentados?

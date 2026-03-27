@@ -49,7 +49,7 @@ sqlserver-iso27001-audit
 
 ## Como utilizar
 
-1. Executar os scripts disponíveis em `[02-Auditoria-SQL](02-Auditoria-SQL/)` para criação das procedures de auditoria
+1. Executar os scripts disponíveis em [02-Auditoria-SQL](02-Auditoria-SQL/) para criação das procedures de auditoria
 
 2. Utilizar a procedure principal para execução das verificações
 

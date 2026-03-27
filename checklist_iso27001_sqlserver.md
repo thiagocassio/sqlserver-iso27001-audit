@@ -19,75 +19,106 @@ FROM sys.server_principals sp
 JOIN sys.syslogins sl ON sp.sid = sl.sid
 WHERE sl.sysadmin = 1;
 ```
-O login sa está desabilitado ou controlado?
+
+- O login sa está desabilitado ou controlado?
+
 ```sql
 SELECT name, is_disabled
 FROM sys.sql_logins
 WHERE name = 'sa';
 ```
-Há revisão periódica de acessos?
-Contas inativas são removidas?
+
+- Há revisão periódica de acessos?
+- Contas inativas são removidas?
+- 
 ---
+
 2. Autenticação e Identidade
-Políticas de senha estão habilitadas?
+
+- Políticas de senha estão habilitadas?
+- 
 ```sql
 SELECT name, is_policy_checked, is_expiration_checked
 FROM sys.sql_logins
 WHERE is_policy_checked = 0;
 ```
-Logins SQL são evitados ou controlados?
-Tentativas de login falhas são monitoradas?
+
+- Logins SQL são evitados ou controlados?
+- Tentativas de login falhas são monitoradas?
+- 
 ```sql
 EXEC xp_readerrorlog 0, 1, 'Login failed';
 ```
-Integração com AD está implementada?
-MFA é utilizado quando possível?
+
+- Integração com AD está implementada?
+- MFA é utilizado quando possível?
+- 
 ---
 4. Criptografia e Proteção de Dados
-TDE está habilitado nos bancos críticos?
+
+- TDE está habilitado nos bancos críticos?
+- 
 ```sql
 SELECT 
     db.name,
     db.is_encrypted
 FROM sys.databases db;
 ```
-Backups são criptografados?
-Dados sensíveis usam Always Encrypted ou equivalente?
-Conexões usam TLS/SSL?
+
+- Backups são criptografados?
+- Dados sensíveis usam Always Encrypted ou equivalente?
+- Conexões usam TLS/SSL?
+- 
 ```sql
 SELECT 
     session_id,
     encrypt_option
 FROM sys.dm_exec_connections;
 ```
-Chaves criptográficas são protegidas?
+
+- Chaves criptográficas são protegidas?
+
 ---
+
 6. Auditoria e Monitoramento
-SQL Server Audit está ativo?
+
+- SQL Server Audit está ativo?
+
 ```sql
 SELECT name, is_state_enabled
 FROM sys.server_audits;
 ```
-Eventos auditados incluem logins, alterações e acesso a dados?
+
+- Eventos auditados incluem logins, alterações e acesso a dados?
+
 ```sql
 SELECT *
 FROM sys.server_audit_specifications;
 ```
-Logs são enviados para SIEM (ex: Microsoft Sentinel)?
-Existe monitoramento em tempo real?
-Alertas estão configurados?
+
+- Logs são enviados para SIEM (ex: Microsoft Sentinel)?
+- Existe monitoramento em tempo real?
+- Alertas estão configurados?
+
 ---
+
 8. Gestão de Vulnerabilidades
-SQL Server está atualizado?
+
+- SQL Server está atualizado?
+
 ```sql
 SELECT @@VERSION;
 ```
-Vulnerability Assessment é executado?
-Features não utilizadas estão desabilitadas?
+
+- Vulnerability Assessment é executado?
+- Features não utilizadas estão desabilitadas?
+
 ```sql
 EXEC sp_configure 'show advanced options', 1;
 RECONFIGURE;
+```
 
+```sql
 SELECT name, value_in_use
 FROM sys.configurations
 WHERE name IN (
@@ -96,12 +127,17 @@ WHERE name IN (
     'Ad Hoc Distributed Queries'
 );
 ```
-Contas padrão ou testes foram removidas?
-Portas e serviços estão restritos?
+
+- Contas padrão ou testes foram removidas?
+- Portas e serviços estão restritos?
+
 ---
+
 6. Backup e Recuperação
-Política de backup está documentada?
-Backups estão sendo realizados?
+
+- Política de backup está documentada?
+- Backups estão sendo realizados?
+
 ```sql
 SELECT 
     database_name,
@@ -109,7 +145,9 @@ SELECT
 FROM msdb.dbo.backupset
 GROUP BY database_name;
 ```
-Existem bancos sem backup?
+
+- Existem bancos sem backup?
+
 ```sql
 SELECT d.name
 FROM sys.databases d
@@ -117,26 +155,37 @@ LEFT JOIN msdb.dbo.backupset b
     ON d.name = b.database_name
 GROUP BY d.name
 HAVING MAX(b.backup_finish_date) IS NULL;
+
 ```
-Testes de restore são realizados?
-Backups são armazenados fora do servidor?
-Backups têm controle de acesso?
+
+- Testes de restore são realizados?
+- Backups são armazenados fora do servidor?
+- Backups têm controle de acesso?
+
 ---
+
 8. Gestão de Mudanças
-Existe controle formal de mudanças?
-Scripts são versionados (ex: Git)?
-Alterações em produção são controladas?
-Existe aprovação antes de mudanças críticas?
-Mudanças são auditáveis?
+
+- Existe controle formal de mudanças?
+- Scripts são versionados (ex: Git)?
+- Alterações em produção são controladas?
+- Existe aprovação antes de mudanças críticas?
+- Mudanças são auditáveis?
+
 ---
+
 10. Classificação de Dados
-Dados sensíveis estão identificados?
+
+- Dados sensíveis estão identificados?
+
 ```sql
 SELECT *
 FROM sys.sensitivity_classifications;
 ```
-Existe classificação de dados?
-Dados sensíveis possuem restrição de acesso?
+
+- Existe classificação de dados?
+- Dados sensíveis possuem restrição de acesso?
+
 ```sql
 SELECT 
     dp.name,
@@ -147,34 +196,46 @@ FROM sys.database_permissions perm
 JOIN sys.database_principals dp 
     ON perm.grantee_principal_id = dp.principal_id
 WHERE perm.state_desc = 'GRANT';
+
 ```
-Dynamic Data Masking está implementado?
-Há política de retenção de dados?
+- Dynamic Data Masking está implementado?
+- Há política de retenção de dados?
+
 ---
+
 12. Segurança de Infraestrutura
-Servidor SQL está isolado em rede segura?
-Firewall está configurado corretamente?
-Acesso remoto é restrito?
-Conta de serviço tem privilégios mínimos?
-Hardening do SO foi aplicado?
+- Servidor SQL está isolado em rede segura?
+- Firewall está configurado corretamente?
+- Acesso remoto é restrito?
+- Conta de serviço tem privilégios mínimos?
+- Hardening do SO foi aplicado?
+
 ---
+
 14. Logs e Evidência
-Logs são armazenados com retenção definida?
-Logs são protegidos contra alteração?
-Existe trilha de auditoria completa?
-Logs são revisados regularmente?
-Evidências são mantidas para auditoria?
+
+- Logs são armazenados com retenção definida?
+- Logs são protegidos contra alteração?
+- Existe trilha de auditoria completa?
+- Logs são revisados regularmente?
+- Evidências são mantidas para auditoria?
+
 ---
+
 16. Alta Disponibilidade e DR
-Existe estratégia de HA (Always On / Log Shipping)?
-RPO e RTO estão definidos?
-Testes de failover são realizados?
-Plano de DR está documentado?
-Equipe sabe executar o plano?
+
+- Existe estratégia de HA (Always On / Log Shipping)?
+- RPO e RTO estão definidos?
+- Testes de failover são realizados?
+- Plano de DR está documentado?
+- Equipe sabe executar o plano?
+
 ---
+
 18. Processos e Governança
-Existem runbooks operacionais?
-Procedimentos estão documentados?
-Equipe foi treinada?
-Existe segregação de funções (DBA vs Dev)?
-Auditorias internas são realizadas?
+
+- Existem runbooks operacionais?
+- Procedimentos estão documentados?
+- Equipe foi treinada?
+- Existe segregação de funções (DBA vs Dev)?
+- Auditorias internas são realizadas?

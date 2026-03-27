@@ -65,7 +65,6 @@ Os dados podem ser consumidos por ferramentas como:
 
 - Grafana
  [![Grafana](03-Dashboard/grafana_iso.png)](03-Dashboard/grafana_iso.png)
-<br>
 - Power BI
 
 Permite visualizar:

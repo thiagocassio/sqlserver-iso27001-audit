@@ -8,7 +8,7 @@ Projeto prático de auditoria em SQL Server baseado nos controles da ISO/IEC 270
 
 Demonstrar como aplicar conceitos de segurança da informação em ambientes SQL Server, utilizando:
 
-- [Checklist baseado na ISO 27001](01-Checklist /checklist_iso27001_sqlserver.md)
+- [Checklist baseado na ISO 27001](01-Checklist/checklist_iso27001_sqlserver.md)
 - [Queries de auditoria](02-Auditoria-SQL/queries_auditoria.sql)
 - [Procedures automatizadas](02-Auditoria-SQL/procedures_auditoria.sql)
 - [Dashboard no Grafana](03-Dashboard/grafana_dashboard.json)

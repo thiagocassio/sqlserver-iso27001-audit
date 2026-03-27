@@ -98,5 +98,7 @@ O projeto gera:
 
 **Observações**
 
-Este projeto tem caráter educacional e demonstra uma abordagem prática de auditoria baseada na ISO 27001 aplicada a banco de dados.
+Este projeto não tem como objetivo implementar a ISO 27001 completa, mas sim demonstrar como controles de segurança podem ser aplicados de forma prática em ambientes SQL Server.
+
+A solução utiliza queries e procedures para simular um processo de auditoria técnica, gerando evidências que podem ser utilizadas em análises de conformidade.
 

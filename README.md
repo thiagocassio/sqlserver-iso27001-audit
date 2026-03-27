@@ -106,7 +106,7 @@ O projeto gera:
 
 ###
 
-Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - SQL Server
 - T-SQL

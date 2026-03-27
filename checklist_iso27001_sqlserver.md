@@ -10,6 +10,7 @@
 - Usuários possuem apenas o mínimo privilégio necessário?
 
 **Evidência: logins com privilégio sysadmin**
+
 ```sql
 SELECT 
     sp.name AS LoginName,
@@ -30,13 +31,13 @@ WHERE name = 'sa';
 
 - Há revisão periódica de acessos?
 - Contas inativas são removidas?
-- 
+
 ---
 
 2. Autenticação e Identidade
 
 - Políticas de senha estão habilitadas?
-- 
+
 ```sql
 SELECT name, is_policy_checked, is_expiration_checked
 FROM sys.sql_logins
@@ -45,19 +46,19 @@ WHERE is_policy_checked = 0;
 
 - Logins SQL são evitados ou controlados?
 - Tentativas de login falhas são monitoradas?
-- 
+
 ```sql
 EXEC xp_readerrorlog 0, 1, 'Login failed';
 ```
 
 - Integração com AD está implementada?
 - MFA é utilizado quando possível?
-- 
+
 ---
 4. Criptografia e Proteção de Dados
 
 - TDE está habilitado nos bancos críticos?
-- 
+
 ```sql
 SELECT 
     db.name,
@@ -68,7 +69,7 @@ FROM sys.databases db;
 - Backups são criptografados?
 - Dados sensíveis usam Always Encrypted ou equivalente?
 - Conexões usam TLS/SSL?
-- 
+
 ```sql
 SELECT 
     session_id,

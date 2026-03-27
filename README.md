@@ -104,7 +104,7 @@ O projeto gera:
 - Indicadores de conformidade
 - Identificação de riscos no ambiente SQL Server
 
-##
+###
 
 Tecnologias utilizadas
 

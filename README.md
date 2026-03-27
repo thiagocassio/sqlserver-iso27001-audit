@@ -40,10 +40,7 @@ sqlserver-iso27001-audit
 │   └── procedures_auditoria.sql
 │
 ├── 03-Dashboard
-│   └── grafana_dashboard.json (opcional)
-│
-├── 04-Documentacao
-│   └── como_funciona.md
+│   └── grafana_dashboard.json
 │
 └── README.md
 ```

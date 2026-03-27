@@ -134,7 +134,7 @@ WHERE name IN (
 
 ---
 
-6. Backup e Recuperação
+## 6. Backup e Recuperação
 
 - Política de backup está documentada?
 - Backups estão sendo realizados?

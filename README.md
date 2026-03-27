@@ -28,10 +28,10 @@ Demonstrar como aplicar conceitos de segurança da informação em ambientes SQL
 
 ---
 
-## Estrutura do projeto
+## Estrutura do Projeto
+
 
 sqlserver-iso27001-audit
-
 │
 ├── 01-Checklist
 │ └── checklist_iso27001_sqlserver.md

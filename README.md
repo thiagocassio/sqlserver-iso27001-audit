@@ -95,7 +95,7 @@ Permite visualizar:
 
 ##
 
-## Resultado
+** Resultado **
 
 O projeto gera:
 
@@ -106,7 +106,7 @@ O projeto gera:
 
 ##
 
-## Tecnologias utilizadas
+** Tecnologias utilizadas **
 
 - SQL Server
 - T-SQL
@@ -114,7 +114,7 @@ O projeto gera:
 
 ##
 
-## Observações
+** Observações **
 
 Este projeto tem caráter educacional e demonstra uma abordagem prática de auditoria baseada na ISO 27001 aplicada a banco de dados.
 

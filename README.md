@@ -27,27 +27,26 @@ Demonstrar como aplicar conceitos de segurança da informação em ambientes SQL
 - Hardening básico do ambiente
 
 ---
-
 ## Estrutura do Projeto
 
-
+```
 sqlserver-iso27001-audit
 │
 ├── 01-Checklist
-│ └── checklist_iso27001_sqlserver.md
+│   └── checklist_iso27001_sqlserver.md
 │
 ├── 02-Auditoria-SQL
-│ ├── queries_auditoria.sql
-│ └── procedures_auditoria.sql
+│   ├── queries_auditoria.sql
+│   └── procedures_auditoria.sql
 │
 ├── 03-Dashboard
-│ └── grafana_dashboard.json (opcional)
+│   └── grafana_dashboard.json (opcional)
 │
 ├── 04-Documentacao
-│ └── como_funciona.md
+│   └── como_funciona.md
 │
 └── README.md
-
+```
 
 ---
 
@@ -74,46 +73,48 @@ EXEC sp_Auditoria_Geral;
 ```
 --- 
 
-3. Visualizar resultados
+## 3. Visualizar resultados
 ```sql
 SELECT * FROM Auditoria_ISO27001;
 ```
 
 ---
 
-## 5. Dashboard
+## 4. Dashboard
 
 Os dados podem ser consumidos por ferramentas como:
 
-Grafana
-Power BI
+- Grafana
+- Power BI
 
 Permite visualizar:
 
-Percentual de conformidade
-Itens não conformes
-Score por categoria
-Resultado
+- Percentual de conformidade
+- Itens não conformes
+- Score por categoria
+
+###
+
+## Resultado
 
 O projeto gera:
 
-Base estruturada de auditoria
+- Base estruturada de auditoria
+- Evidência técnica para validação de controles
+- Indicadores de conformidade
+- Identificação de riscos no ambiente SQL Server
 
-Evidência técnica para validação de controles
-
-Indicadores de conformidade
-
-Identificação de riscos no ambiente SQL Server
+##
 
 Tecnologias utilizadas
 
-SQL Server
+- SQL Server
+- T-SQL
+- Grafana
 
-T-SQL
+###
 
-Grafana
-
-Observações
+## Observações
 
 Este projeto tem caráter educacional e demonstra uma abordagem prática de auditoria baseada na ISO 27001 aplicada a banco de dados.
 

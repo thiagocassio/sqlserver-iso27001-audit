@@ -9,7 +9,7 @@
 - Existe política de acesso formal definida?
 - Usuários possuem apenas o mínimo privilégio necessário?
 
-**Evidência: logins com privilégio sysadmin**
+**Evidência 1: logins com privilégio sysadmin**
 
 ```sql
 SELECT 
@@ -19,6 +19,45 @@ SELECT
 FROM sys.server_principals sp
 JOIN sys.syslogins sl ON sp.sid = sl.sid
 WHERE sl.sysadmin = 1;
+```
+
+**Evidência 2: Privilégios elevados**
+
+```sql
+SELECT 
+    sp.name AS LoginName,
+    sp.type_desc,
+    rp.name AS ServerRole
+FROM sys.server_role_members rm
+JOIN sys.server_principals sp 
+    ON rm.member_principal_id = sp.principal_id
+JOIN sys.server_principals rp
+    ON rm.role_principal_id = rp.principal_id
+WHERE rp.name IN (
+    'sysadmin',
+    'securityadmin',
+    'serveradmin',
+    'setupadmin',
+    'processadmin',
+    'diskadmin',
+    'dbcreator',
+    'bulkadmin'
+)
+ORDER BY rp.name, sp.name;
+```
+
+**Evidência 3: Excesso de privilégio por banco**
+```sql
+SELECT 
+    DP1.name AS DatabaseUser,
+    DP2.name AS DatabaseRole
+FROM sys.database_role_members DRM
+JOIN sys.database_principals DP1
+    ON DRM.member_principal_id = DP1.principal_id
+JOIN sys.database_principals DP2
+    ON DRM.role_principal_id = DP2.principal_id
+WHERE DP2.name IN ('db_owner','db_securityadmin','db_accessadmin')
+ORDER BY DP2.name, DP1.name;
 ```
 
 - O login sa está desabilitado ou controlado?

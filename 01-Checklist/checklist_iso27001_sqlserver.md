@@ -116,6 +116,22 @@ FROM sys.databases db;
 ```
 
 - Backups são criptografados?
+```sql
+SELECT
+    bs.database_name,
+    bs.backup_start_date,
+    bs.backup_finish_date,
+    bs.type AS backup_type,
+    CASE 
+        WHEN bs.key_algorithm IS NOT NULL THEN 'SIM'
+        ELSE 'NAO'
+    END AS backup_criptografado,
+    bs.key_algorithm,
+    bs.encryptor_thumbprint
+FROM msdb.dbo.backupset bs
+ORDER BY bs.backup_finish_date DESC;
+```
+
 - Dados sensíveis usam Always Encrypted ou equivalente?
 - Conexões usam TLS/SSL?
 
@@ -127,6 +143,38 @@ FROM sys.dm_exec_connections;
 ```
 
 - Chaves criptográficas são protegidas?
+
+**Evidência 1: TDE/Database Encryption Keys**
+```sql
+SELECT
+    DB_NAME(database_id) AS database_name,
+    encryption_state,
+    key_algorithm,
+    key_length,
+    encryptor_thumbprint
+FROM sys.dm_database_encryption_keys;
+```
+
+**Evidência 2: Certificados do servidor**
+```sql
+SELECT
+    name,
+    subject,
+    start_date,
+    expiry_date,
+    issuer_name,
+    pvt_key_encryption_type_desc
+FROM master.sys.certificates;
+```
+
+**Evidência 3: Always Encrypted key store**
+```sql
+SELECT
+    name,
+    key_store_provider_name,
+    key_path
+FROM sys.column_master_keys;
+```
 
 ---
 

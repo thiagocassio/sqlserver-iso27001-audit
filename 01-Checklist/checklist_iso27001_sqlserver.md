@@ -91,6 +91,16 @@ EXEC xp_readerrorlog 0, 1, N'Login failed';
 ```
 
 - Integração com AD está implementada?
+```sql
+SELECT 
+    name,
+    type_desc,
+    create_date
+FROM sys.server_principals
+WHERE type IN ('U','G')
+ORDER BY type_desc, name;
+```
+
 - MFA é utilizado quando possível?
 
 ---

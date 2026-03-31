@@ -48,7 +48,7 @@ WHERE is_policy_checked = 0;
 - Tentativas de login falhas são monitoradas?
 
 ```sql
-EXEC xp_readerrorlog 0, 1, 'Login failed';
+EXEC xp_readerrorlog 0, 1, N'Login failed';
 ```
 
 - Integração com AD está implementada?

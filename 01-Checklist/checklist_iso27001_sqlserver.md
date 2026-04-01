@@ -308,8 +308,24 @@ FROM sys.sensitivity_classifications;
 ```
 
 - Existe classificação de dados?
+```sql
+SELECT 
+    OBJECT_SCHEMA_NAME(sc.major_id) AS SchemaName,
+    OBJECT_NAME(sc.major_id) AS TableName,
+    c.name AS ColumnName,
+    sc.label,
+    sc.information_type
+FROM sys.sensitivity_classifications sc
+JOIN sys.columns c
+    ON sc.major_id = c.object_id
+   AND sc.minor_id = c.column_id
+ORDER BY SchemaName, TableName, ColumnName;
+```
+
 - Dados sensíveis possuem restrição de acesso?
 
+**Evidência 1:**
+  
 ```sql
 SELECT 
     dp.name,
@@ -320,9 +336,44 @@ FROM sys.database_permissions perm
 JOIN sys.database_principals dp 
     ON perm.grantee_principal_id = dp.principal_id
 WHERE perm.state_desc = 'GRANT';
-
 ```
+
+**Evidência 2:**
+  
+```sql
+SELECT 
+    OBJECT_SCHEMA_NAME(sc.major_id) AS SchemaName,
+    OBJECT_NAME(sc.major_id) AS TableName,
+    c.name AS ColumnName,
+    dp.name AS PrincipalName,
+    perm.permission_name,
+    perm.state_desc
+FROM sys.sensitivity_classifications sc
+JOIN sys.columns c
+    ON sc.major_id = c.object_id
+   AND sc.minor_id = c.column_id
+JOIN sys.database_permissions perm
+    ON perm.major_id = sc.major_id
+JOIN sys.database_principals dp
+    ON perm.grantee_principal_id = dp.principal_id
+ORDER BY SchemaName, TableName, ColumnName;
+```
+
 - Dynamic Data Masking está implementado?
+```sql
+SELECT 
+    t.name AS TableName,
+    c.name AS ColumnName,
+    mc.masking_function
+FROM sys.masked_columns mc
+JOIN sys.tables t
+    ON mc.object_id = t.object_id
+JOIN sys.columns c
+    ON mc.object_id = c.object_id
+   AND mc.column_id = c.column_id
+WHERE mc.is_masked = 1;
+```
+
 - Há política de retenção de dados?
 
 ---

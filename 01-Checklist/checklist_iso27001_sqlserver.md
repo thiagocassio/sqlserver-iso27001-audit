@@ -474,4 +474,33 @@ FROM msdb.dbo.log_shipping_monitor_secondary;
 - Procedimentos estão documentados?
 - Equipe foi treinada?
 - Existe segregação de funções (DBA vs Dev)?
+
+**Evidência 1: Server roles**
+```sql
+SELECT 
+    sp.name AS LoginName,
+    sp.type_desc,
+    sr.name AS ServerRole
+FROM sys.server_role_members srm
+JOIN sys.server_principals sp
+    ON srm.member_principal_id = sp.principal_id
+JOIN sys.server_principals sr
+    ON srm.role_principal_id = sr.principal_id
+ORDER BY sr.name, sp.name;
+```
+
+**Evidência 2: Database roles**
+```sql
+SELECT 
+    dp.name AS UserName,
+    dp.type_desc,
+    rp.name AS DatabaseRole
+FROM sys.database_role_members drm
+JOIN sys.database_principals dp
+    ON drm.member_principal_id = dp.principal_id
+JOIN sys.database_principals rp
+    ON drm.role_principal_id = rp.principal_id
+ORDER BY rp.name, dp.name;
+```
+
 - Auditorias internas são realizadas?

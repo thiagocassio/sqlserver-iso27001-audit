@@ -390,8 +390,40 @@ WHERE mc.is_masked = 1;
 ## 10. Logs e Evidência
 
 - Logs são armazenados com retenção definida?
+
+**Evidência 1: Se usar  SQL Server Audit**
+  ```sql
+SELECT
+    name,
+    log_file_path,
+    max_file_size,
+    max_rollover_files,
+    max_files
+FROM sys.server_file_audits;
+  ```
+  
 - Logs são protegidos contra alteração?
 - Existe trilha de auditoria completa?
+
+**Evidência 1: Server Audit**
+```sql
+SELECT
+    s.name AS AuditSpec,
+    a.name AS AuditName,
+    s.is_state_enabled
+FROM sys.server_audit_specifications s
+JOIN sys.server_audits a
+    ON s.audit_guid = a.audit_guid;
+```
+
+**Evidência 2: Database Audit**
+```sql
+SELECT
+    s.name AS DbAuditSpec,
+    s.is_state_enabled
+FROM sys.database_audit_specifications s;
+```
+  
 - Logs são revisados regularmente?
 - Evidências são mantidas para auditoria?
 

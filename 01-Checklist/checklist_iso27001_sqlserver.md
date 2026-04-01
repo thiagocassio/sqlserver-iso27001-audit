@@ -266,10 +266,20 @@ LEFT JOIN msdb.dbo.backupset b
     ON d.name = b.database_name
 GROUP BY d.name
 HAVING MAX(b.backup_finish_date) IS NULL;
-
 ```
 
 - Testes de restore são realizados?
+```sql
+SELECT
+    destination_database_name,
+    restore_date,
+    user_name,
+    restore_type,
+    recovery
+FROM msdb.dbo.restorehistory
+ORDER BY restore_date DESC;
+```
+
 - Backups são armazenados fora do servidor?
 - Backups têm controle de acesso?
 

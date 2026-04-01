@@ -432,6 +432,35 @@ FROM sys.database_audit_specifications s;
 ## 11. Alta Disponibilidade e DR
 
 - Existe estratégia de HA (Always On / Log Shipping)?
+
+**Evidência 1: Always On Availability Groups**
+```sql
+SELECT 
+    ag.name AS AGName,
+    ar.replica_server_name,
+    ars.role_desc,
+    ars.synchronization_health_desc
+FROM sys.availability_groups ag
+JOIN sys.availability_replicas ar
+    ON ag.group_id = ar.group_id
+JOIN sys.dm_hadr_availability_replica_states ars
+    ON ar.replica_id = ars.replica_id;
+ ```
+
+**Evidência 2: Log Shipping**
+```sql
+SELECT 
+    primary_database,
+    secondary_server,
+    secondary_database,
+    last_copied_file,
+    last_copied_date,
+    last_restored_file,
+    last_restored_date,
+    last_restored_latency
+FROM msdb.dbo.log_shipping_monitor_secondary;
+ ```
+
 - RPO e RTO estão definidos?
 - Testes de failover são realizados?
 - Plano de DR está documentado?

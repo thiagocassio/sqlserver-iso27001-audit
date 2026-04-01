@@ -279,6 +279,12 @@ SELECT
 FROM msdb.dbo.restorehistory
 ORDER BY restore_date DESC;
 ```
+Mostra:
+- qual banco foi restaurado
+- quando
+- quem executou
+- tipo do restore
+- se foi recovery/norecovery
 
 - Backups são armazenados fora do servidor?
 - Backups têm controle de acesso?

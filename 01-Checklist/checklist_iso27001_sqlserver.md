@@ -196,9 +196,9 @@ FROM sys.server_audit_specifications;
 
 - Logs são enviados para SIEM (ex: Microsoft Sentinel)?
 - Existe monitoramento em tempo real?
-  ```sql
+  
 - Alertas estão configurados?
-
+```sql
 USE msdb;
 GO
 

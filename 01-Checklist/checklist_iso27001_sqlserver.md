@@ -272,15 +272,7 @@ HAVING MAX(b.backup_finish_date) IS NULL;
 
 **Mostra:**
 
-*- qual banco foi restaurado*
-
-*- quando*
-
-*- quem executou*
-
-*- tipo do restore*
-
-*- se foi recovery/norecovery*
+*- qual banco foi restaurado / quando / quem executou / tipo do restore / se foi recovery/norecovery*
 ```sql
 SELECT
     destination_database_name,
